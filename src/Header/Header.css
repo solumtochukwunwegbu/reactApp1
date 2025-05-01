@@ -28,5 +28,6 @@
   .nav-link:hover {
     text-decoration: underline;
     color: gray;
+    transition: color 0.25s ease;
   }
   
