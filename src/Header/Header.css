@@ -1,0 +1,32 @@
+/* src/components/Header/Header.css */
+.header-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: 45px;
+    font-weight: bolder;
+    font-family: serif;
+    /* cursor: pointer; */
+  }
+  
+  .nav {
+    display: flex;
+    gap: 40px;
+    cursor: pointer;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+    color: gray;
+  }
+  
