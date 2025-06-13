@@ -1,8 +1,8 @@
 .calculator-container {
-  max-width: 250px;
+  max-width: 300px;
   justify-self: center;
   align-self: center;
-  margin: 100px;
+  margin: 200px;
   padding: 2rem;
   background-color: #f5f5f5;
   border-radius: 10px;
@@ -58,5 +58,9 @@ button.equals {
 button.clear {
   background-color: #f44336;
   color: white;
-  grid-column: span 2;
+}
+
+button.backspace {
+  background-color: #f3e221;
+  color: white;
 }

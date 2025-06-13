@@ -3,7 +3,7 @@ import './index.css';
 export default function indexPage() {
     return (
         <div>
-            <h2 class='title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto veniam, recusandae, 
+            <h2 className='title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto veniam, recusandae, 
                 animi cupiditate fuga obcaecati culpa in, nemo neque officia sequi 
                 exercitationem amet officiis. Quaerat optio nesciunt aspernatur pariatur voluptates!
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum consequuntu
