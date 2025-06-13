@@ -12,16 +12,15 @@ export default function App() {
   // alert("Hello");
   return (
     <div>
-      
-      
-     
-     
-      <Routes>
-        <Route path="/" element={<IndexPage />} />
-        <Route path="/service" element={<Service />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/settings" element={<Settings/>} />
-      </Routes>
+       {/* Wrap content in a main with padding */}
+        <main style={{ paddingBottom: '300px' }}>
+          <Routes>
+            <Route path="/" element={<IndexPage />} />
+            <Route path="/service" element={<Service />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </main>
 
       <Dashboard />
     </div>

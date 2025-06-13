@@ -1,12 +1,21 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./assets/layout.css";
 
 export default function Layout() {
-  
+  const [isOpen, setIsOpen] = useState(false);
   const year = new Date().getFullYear();
 
   return (
-    <footer className="dashboard">
+    <footer className={`dashboard ${isOpen ? "open" : "closed"}`}>
+      <button
+        className="toggle-button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle Footer"
+      >
+        {isOpen ? "↓ Hide Menu" : "↑ Show Menu"}
+      </button>
+
       <div className="dash-container">
         <div className="dash-item">
           <Link to="/">
@@ -32,12 +41,9 @@ export default function Layout() {
             <span className="label">Settings</span>
           </Link>
         </div>
-      
       </div>
+
       <div className="copyright">&copy; {year} Etop.ng</div>
-      
     </footer>
   );
-};
-
-
+}

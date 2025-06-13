@@ -92,7 +92,6 @@ export default function Service() {
   <button type="submit">Submit</button>
                 <button type="submit">Submit</button>
             </form>
-            {/* <p>i'm working</p> */}
         </div>
     );
 }

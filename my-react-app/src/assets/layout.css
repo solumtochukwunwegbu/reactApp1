@@ -1,18 +1,15 @@
-/* layout.css */
-*{
+* {
   box-sizing: border-box;
 }
-/* Reset some basic styles */
-body {        /* So they take full screen height */
+
+body {
   margin: 0;
   padding: 0;
 }
 
-
-
-/* Fixed Bottom Dashboard */
+/* Fixed Bottom Dashboard with Dropdown */
 .dashboard {
-  margin-top: 100px;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -21,16 +18,32 @@ body {        /* So they take full screen height */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* gap: 40px; */
- 
+  transition: transform 0.3s ease;
+  transform: translateY(0%);
+  z-index: 1000;
+}
+
+.dashboard.closed {
+  transform: translateY(85%); /* Show only the toggle */
+}
+
+.toggle-button {
+  background-color: #20232a;
+  color: #ccc;
+  border: none;
+  padding: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
 }
 
 .dash-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: solid 1px  #444a57;
-  padding: 50px 40px;
+  border-bottom: solid 1px #444a57;
+  padding: 40px 30px;
+  font-size: 15px;
 }
 
 .dash-item a {
@@ -40,7 +53,6 @@ body {        /* So they take full screen height */
   text-decoration: none;
   color: inherit;
 }
-
 
 .icon {
   font-size: 1.5rem;
@@ -52,11 +64,9 @@ body {        /* So they take full screen height */
   cursor: pointer;
 }
 
-
-.copyright{
+.copyright {
   text-align: center;
-  padding: 20px 0;
   font-size: 0.8rem;
   align-items: center;
-  padding: 40px;
+  padding: 25px;
 }
