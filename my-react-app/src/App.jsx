@@ -2,22 +2,28 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import IndexPage from './pages/index/index';
-import AboutPage from './pages/about/about';
-import Footer from './layout';
-import CalculatorPage from './pages/calculator/calculator'; 
+import Reports from './pages/reports/reports'; 
+import Service from './pages/service/service';
+import Settings from './pages/settings/settings';
+import Dashboard from './layout';
+
 
 export default function App() {
+  // alert("Hello");
   return (
     <div>
       
+      
+     
+     
       <Routes>
         <Route path="/" element={<IndexPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/calculator" element={<CalculatorPage />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/settings" element={<Settings/>} />
       </Routes>
-      
-      
-      <Footer />
+
+      <Dashboard />
     </div>
   );
 }

@@ -1,29 +1,43 @@
-// layout.jsx (no Router here)
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./assets/layout.css";
 
+export default function Layout() {
+  
+  const year = new Date().getFullYear();
 
-
-export default function Footer() {
   return (
     <footer className="dashboard">
+      <div className="dash-container">
         <div className="dash-item">
-          <span className="icon">🏠</span>
-          <span className="label">Dashboard</span>
+          <Link to="/">
+            <span className="icon">🏠</span>
+            <span className="label">Dashboard</span>
+          </Link>
         </div>
         <div className="dash-item">
-          <span className="icon">🛠️</span>
-          <span className="label">Service</span>
+          <Link to="/service">
+            <span className="icon">🛠️</span>
+            <span className="label">Service</span>
+          </Link>
         </div>
         <div className="dash-item">
-          <span className="icon">📊</span>
-          <span className="label">Reports</span>
+          <Link to="/reports">
+            <span className="icon">📊</span>
+            <span className="label">Reports</span>
+          </Link>
         </div>
         <div className="dash-item">
-          <span className="icon">⚙️</span>
-          <span className="label">Settings</span>
+          <Link to="/settings">
+            <span className="icon">⚙️</span>
+            <span className="label">Settings</span>
+          </Link>
         </div>
-      </footer>
+      
+      </div>
+      <div className="copyright">&copy; {year} Etop.ng</div>
+      
+    </footer>
   );
-}
+};
+
+
