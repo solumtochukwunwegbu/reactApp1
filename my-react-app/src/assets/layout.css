@@ -13,8 +13,8 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #20232a;
-  color: #ccc;
+  background-color:  #d06c01;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -28,8 +28,8 @@ body {
 }
 
 .toggle-button {
-  background-color: #20232a;
-  color: #ccc;
+  background-color:  #d06c01;;
+  color: white;
   border: none;
   padding: 10px;
   font-size: 0.9rem;
@@ -60,7 +60,7 @@ body {
 }
 
 .dash-item:hover {
-  color: #61dafb;
+  color: #6d3901;
   cursor: pointer;
 }
 

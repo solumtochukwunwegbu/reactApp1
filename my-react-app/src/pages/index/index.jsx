@@ -4,7 +4,7 @@ export default function indexPage() {
     return (
         <div>
             <h2>This is the dashboard page</h2>
-            <h2 className='title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto veniam, recusandae, 
+            <p className='filler'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto veniam, recusandae, 
                 animi cupiditate fuga obcaecati culpa in, nemo neque officia sequi 
                 exercitationem amet officiis. Quaerat optio nesciunt aspernatur pariatur voluptates!
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum consequuntu
@@ -12,7 +12,7 @@ export default function indexPage() {
                 s, veritatis itaque nisi. Dolorum voluptas harum ullam facere, sit similique.
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque rem amet odio quae veritatis, 
                 expedita nesciunt voluptatem sapiente fugiat eligendi quia et porro iste soluta vitae,
-                 accusamus repudiandae cupiditate facere.</h2>
+                 accusamus repudiandae cupiditate facere.</p>
         </div>
     );
 }

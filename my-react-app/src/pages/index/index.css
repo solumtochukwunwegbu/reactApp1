@@ -1,4 +1,16 @@
-.title{
-    margin-inline: 30px;
-    font-size: 20px;
+body{
+    margin: 100px;
+    padding: 30px;
+    font-size: 17px;
+
+}
+
+h2{
+    margin: 20px;
+    padding: 10px;
+}
+
+.filler{
+    margin: 20px;
+    padding: 10px;
 }
