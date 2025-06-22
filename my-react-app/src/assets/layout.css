@@ -71,3 +71,19 @@ body {
   align-items: center;
   padding: 25px;
 }
+
+
+.logo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  width: 200px;
+  justify-self: center;
+  margin-bottom: 100px;
+}
+
+.logo{
+  max-width: 100%;
+  height: auto;
+}

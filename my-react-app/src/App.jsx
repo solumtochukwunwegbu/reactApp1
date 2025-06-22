@@ -5,13 +5,14 @@ import IndexPage from './pages/index/index';
 import Reports from './pages/reports/reports'; 
 import Service from './pages/service/service';
 import Settings from './pages/settings/settings';
-import Dashboard from './layout';
+import {Dashboard, Logo} from './layout';
 
 
 export default function App() {
   // alert("Hello");
   return (
     <div>
+       <Logo/>
        {/* Wrap content in a main with padding */}
         <main style={{ paddingBottom: '300px' }}>
           <Routes>

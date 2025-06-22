@@ -4,7 +4,9 @@ form {
   padding: 1.5rem;               /* Slightly less padding */
   background-color: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);  /* Softer shadow */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+ /* Softer shadow */
+  margin-bottom: -50px;
 }
 
 form label {
@@ -53,7 +55,7 @@ form input[type="file"] {
   font-size: 0.95rem;
   border-radius: 4px;
   border: none;
-  background-color:  #d06c01 ;
+  background-color: #ED6C21;
   color: white;
   cursor: pointer;
   transition: background-color 0.2s;

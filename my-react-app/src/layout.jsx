@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faWrench, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faChartBar } from '@fortawesome/free-regular-svg-icons'; // chartBar is regular
 
+import logo from './assets/full_logo.256047a7.png';
 
 
-export default function Dashboard() {
+
+export function Dashboard() {
   const [isOpen, setIsOpen] = useState(false);
   const year = new Date().getFullYear();
 
@@ -61,4 +63,12 @@ export default function Dashboard() {
       <div className="copyright">&copy; {year} Etop.ng</div>
     </footer>
   );
+}
+
+export function Logo(){
+      return(
+        <div className="logo-container">
+          <img className="logo" src= {logo}/>
+        </div>
+      );
 }
