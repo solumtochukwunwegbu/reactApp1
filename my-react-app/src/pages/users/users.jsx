@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './users.css'; // Import the CSS file
 
 export default function Users() {
   const [activeTab, setActiveTab] = useState('list');
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({ name: '', email: '' });
+
+  // Fetch users from backend
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/api/users')
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.error('Error fetching users:', err));
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData((prev) => ({
@@ -15,9 +24,14 @@ export default function Users() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUsers((prev) => [...prev, formData]);
-    setFormData({ name: '', email: '' });
-    setActiveTab('list');
+    axios
+      .post('http://localhost:3001/api/users', formData)
+      .then((res) => {
+        setUsers((prev) => [...prev, res.data]);
+        setFormData({ name: '', email: '' });
+        setActiveTab('list');
+      })
+      .catch((err) => console.error('Error adding user:', err));
   };
 
   return (
@@ -77,6 +91,4 @@ export default function Users() {
       )}
     </div>
   );
-};
-
-
+}

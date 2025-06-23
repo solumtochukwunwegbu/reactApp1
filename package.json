@@ -1,0 +1,12 @@
+{
+  "name": "reactApp",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "npm run dev --prefix my-react-app",
+    "server": "node my-app-backend/app.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
