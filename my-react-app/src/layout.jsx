@@ -52,20 +52,20 @@ export function Dashboard() {
       </div>
 
       <div className="dash-item">
-        <Link to="/settings">
-          <span className="icon text-black">
-            <FontAwesomeIcon icon={faGear} />
-          </span>
-          <span className="label">Settings</span>
-        </Link>
-      </div>
-
-      <div className="dash-item">
         <Link to="/users">
           <span className="icon text-black">
             <FontAwesomeIcon icon={faUser} />
           </span>
           <span className="label">Users</span>
+        </Link>
+      </div>
+      
+      <div className="dash-item">
+        <Link to="/settings">
+          <span className="icon text-black">
+            <FontAwesomeIcon icon={faGear} />
+          </span>
+          <span className="label">Settings</span>
         </Link>
       </div>
 

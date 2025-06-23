@@ -36,15 +36,29 @@ body {
   cursor: pointer;
   text-align: center;
 }
+.toggle-button:hover {
+  background-color: #ED6C21;
+}
 
 .dash-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: solid 1px #444a57;
   padding: 40px 30px;
   font-size: 15px;
+  position: relative;
 }
+
+.dash-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  right: 30px;
+  height: 1px;
+  background-color: white;
+}
+
 
 .dash-item a {
   display: flex;

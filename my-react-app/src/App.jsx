@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import IndexPage from './pages/index/index';
 import Reports from './pages/reports/reports'; 
 import Service from './pages/service/service';
-import Settings from './pages/settings/settings';
 import Users from './pages/users/users';
+import Settings from './pages/settings/settings';
+
 import {Dashboard, Logo} from './layout';
 
 
@@ -20,8 +21,9 @@ export default function App() {
             <Route path="/" element={<IndexPage />} />
             <Route path="/service" element={<Service />} />
             <Route path="/reports" element={<Reports />} />
-            <Route path="/settings" element={<Settings />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/settings" element={<Settings />} />
+            
 
           </Routes>
         </main>

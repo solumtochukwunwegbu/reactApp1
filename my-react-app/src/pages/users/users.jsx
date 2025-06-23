@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './users.css'; // Import the CSS file
 
 export default function Users() {
-  const [activeTab, setActiveTab] = useState('form');
+  const [activeTab, setActiveTab] = useState('list');
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({ name: '', email: '' });
 
@@ -27,7 +27,7 @@ export default function Users() {
           className={activeTab === 'form' ? 'tab active' : 'tab'}
           onClick={() => setActiveTab('form')}
         >
-          Form
+          Signup
         </button>
         <button
           className={activeTab === 'list' ? 'tab active' : 'tab'}

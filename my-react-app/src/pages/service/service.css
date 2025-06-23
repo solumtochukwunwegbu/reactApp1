@@ -55,12 +55,9 @@ form input[type="file"] {
   font-size: 0.95rem;
   border-radius: 4px;
   border: none;
-  background-color: #ED6C21;
+
   color: white;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.form-buttons button:hover {
-  background-color: #6d3901;
-}

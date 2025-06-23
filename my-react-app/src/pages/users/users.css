@@ -1,35 +1,50 @@
 .container {
-  max-width: 500px;
+  width: 90%;
+  max-width: 900px;
   margin: 40px auto;
-  padding: 20px;
-  font-family: sans-serif;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 30px;
+  /* rest unchanged */
 }
+
+
 
 .tabs {
   display: flex;
+  gap: 10px;
   margin-bottom: 20px;
+  justify-content: center;
 }
 
+
 .tab {
-  flex: 1;
-  padding: 10px;
-  background: #f1f1f1;
+  flex: 0 0 auto;
+  width: 300px;
+  padding: 10px 20px;
+  background: #ED6C21;
   border: none;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.2s;
 }
 
 .tab:hover {
-  background: #ddd;
+  background: #6d3901;
 }
 
 .tab.active {
-  background: #007bff;
+  background: #ED6C21;
   color: white;
 }
 
+
+.form{
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  margin-top: 50px;
+}
 .form label {
   display: block;
   margin-bottom: 12px;
@@ -44,14 +59,25 @@
 
 .form button {
   padding: 10px 20px;
-  background: #28a745;
   border: none;
   color: white;
   cursor: pointer;
   margin-top: 10px;
 }
 
+.form button:hover {
+  background: #6d3901;
+  color: white;
+}
+
 .user-list {
   list-style: disc;
-  padding-left: 20px;
+  list-style-position: inside; /* Moves bullets inside the element */
+  padding-left: 0;             /* Removes default padding */
+  text-align: center;
+}
+
+.user-list li {
+  display: block;              /* Ensures each item is centered as a block */
+  margin: 8px 0;
 }
