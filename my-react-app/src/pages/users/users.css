@@ -1,0 +1,57 @@
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  background: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab:hover {
+  background: #ddd;
+}
+
+.tab.active {
+  background: #007bff;
+  color: white;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.form button {
+  padding: 10px 20px;
+  background: #28a745;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.user-list {
+  list-style: disc;
+  padding-left: 20px;
+}

@@ -5,7 +5,7 @@ import "./assets/layout.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Icons — import from proper icon packs
-import { faHouse, faWrench, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faWrench, faGear, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faChartBar } from '@fortawesome/free-regular-svg-icons'; // chartBar is regular
 
 import logo from './assets/full_logo.256047a7.png';
@@ -59,6 +59,17 @@ export function Dashboard() {
           <span className="label">Settings</span>
         </Link>
       </div>
+
+      <div className="dash-item">
+        <Link to="/users">
+          <span className="icon text-black">
+            <FontAwesomeIcon icon={faUser} />
+          </span>
+          <span className="label">Users</span>
+        </Link>
+      </div>
+
+      
           </div>
       <div className="copyright">&copy; {year} Etop.ng</div>
     </footer>
