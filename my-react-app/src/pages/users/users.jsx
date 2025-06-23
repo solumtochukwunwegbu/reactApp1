@@ -83,7 +83,7 @@ export default function Users() {
           ) : (
             users.map((user, index) => (
               <li key={index}>
-                <strong>{user.name}</strong> – {user.email}
+                <strong>{user.name}</strong>
               </li>
             ))
           )}

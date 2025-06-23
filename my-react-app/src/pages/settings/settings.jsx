@@ -1,119 +1,67 @@
-import "./settings.css";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import './settings.css';
+import axios from 'axios';
 
-function TerminalSettingsForm() {
-  const [form, setForm] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState("");
+export default function Settings() {
+  const [formData, setFormData] = useState({ name: '', email: '' });
 
-  useEffect(function () {
-    fetch("/api/terminal-settings")
-      .then(function (response) {
-        return response.json();
+  const user = JSON.parse(sessionStorage.getItem('user'));
+
+  useEffect(() => {
+    if (!user || !user.email) return;
+
+    axios
+      .post('http://localhost:3001/api/user', { email: user.email })
+      .then(res => {
+        if (res.data) setFormData(res.data);
       })
-      .then(function (data) {
-        setForm(data);
-        setLoading(false);
+      .catch(err => console.error('Error loading user settings:', err));
+  }, [user]);
+
+  const handleChange = e => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    axios
+      .post('http://localhost:3001/api/user/update', {
+        name: formData.name,
+        email: user.email // secure identity
       })
-      .catch(function (error) {
-        console.error("Failed to load terminal settings:", error);
-        setLoading(false);
-      });
-  }, []);
+      .then(() => alert('Settings updated successfully!'))
+      .catch(() => alert('Failed to update settings.'));
+  };
 
-  function handleChange(event) {
-    var field = event.target.name;
-    var value = event.target.value;
-
-    setForm(function (prevForm) {
-      return Object.assign({}, prevForm, { [field]: value });
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    fetch("/api/terminal-settings", {
-      method: "PUT", // or POST if it's a new record
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(form)
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error("Failed to save terminal settings");
-        }
-        return response.json();
-      })
-      .then(function (updated) {
-        setMessage("Settings updated successfully.");
-      })
-      .catch(function (error) {
-        console.error(error);
-        setMessage("Error updating settings.");
-      });
-  }
-
-  if (loading) {
-    return <div className="p-4">Loading settings...</div>;
-  }
-
-  if (!form) {
-    return <div className="p-4 text-red-600">No data received from server.</div>;
-  }
+  if (!user) return <p>Not authorized. Please log in.</p>;
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <h2 className="text-xl font-bold mb-4">Terminal Configuration</h2>
-      {message && <p className="mb-2 text-green-700">{message}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <FormField label="Terminal ID" name="terminalId" value={form.terminalId} onChange={handleChange} />
-        <FormField label="Merchant Name" name="merchantName" value={form.merchantName} onChange={handleChange} />
-        <FormTextArea label="Address" name="address" value={form.address} onChange={handleChange} />
-        <FormField label="Phone" name="phone" value={form.phone} onChange={handleChange} />
-        <FormField label="Application Name" name="applicationName" value={form.applicationName} onChange={handleChange} />
-        <FormField label="Application Version" name="applicationVersion" value={form.applicationVersion} onChange={handleChange} />
-        <FormField label="PTSP" name="ptsp" value={form.ptsp} onChange={handleChange} />
-        <FormField label="Terminal Serial" name="terminalSerial" value={form.terminalSerial} onChange={handleChange} />
-        <FormField label="Terminal Type" name="terminalType" value={form.terminalType} onChange={handleChange} />
-        <FormField label="Terminal Model" name="terminalModel" value={form.terminalModel} onChange={handleChange} />
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-          Save Settings
-        </button>
+    <div className="settings-container">
+      <h2>Update Profile</h2>
+      <form onSubmit={handleSubmit} className="settings-form">
+        <label>
+          Name:
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            name="email"
+            value={formData.email}
+            disabled
+            readOnly
+          />
+        </label>
+        <button type="submit">Save Changes</button>
       </form>
     </div>
   );
 }
-
-function FormField(props) {
-  return (
-    <div>
-      <label className="block font-medium mb-1">{props.label}</label>
-      <input
-        type="text"
-        name={props.name}
-        value={props.value || ""}
-        onChange={props.onChange}
-        className="w-full border p-2"
-      />
-    </div>
-  );
-}
-
-function FormTextArea(props) {
-  return (
-    <div>
-      <label className="block font-medium mb-1">{props.label}</label>
-      <textarea
-        name={props.name}
-        value={props.value || ""}
-        onChange={props.onChange}
-        rows="3"
-        className="w-full border p-2"
-      />
-    </div>
-  );
-}
-
-export default TerminalSettingsForm;

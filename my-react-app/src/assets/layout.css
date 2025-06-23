@@ -65,7 +65,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: inherit;
+ 
 }
 
 .icon {
@@ -75,7 +75,6 @@ body {
 
 .dash-item:hover {
   transition: 0.2s;
-  color: #6d3901;
   cursor: pointer;
 }
 
@@ -94,8 +93,8 @@ body {
   margin: 30px;
   width: 200px;
   justify-self: center;
-  margin-top: 50px;
   margin-bottom: 100px;
+  margin-top: -50px;
 }
 
 .logo{

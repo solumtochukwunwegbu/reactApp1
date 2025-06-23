@@ -1,11 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './assets/root.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from './assets/globalUser'; // ✅ Correct path
+import './assets/root.css';
 
-createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-)
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </BrowserRouter>
+);
