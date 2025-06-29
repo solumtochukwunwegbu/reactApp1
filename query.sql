@@ -1,59 +1,35 @@
--- show databases;
-
 -- CREATE TABLE users (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   name VARCHAR(100),
---   email VARCHAR(100)
+--     id SERIAL PRIMARY KEY,
+--     username VARCHAR(50) UNIQUE NOT NULL,
+--     password VARCHAR(255) NOT NULL,
+--     first_name VARCHAR(50) NOT NULL,
+--     last_name VARCHAR(50) NOT NULL,
+--     middle_name VARCHAR(50),
+--     phone VARCHAR(20),
+--     email VARCHAR(100) UNIQUE,
+--     base_location_state VARCHAR(50),
+--     base_location_area VARCHAR(100)
 -- );
 
--- INSERT INTO users (name, email) VALUES
--- ('Alice Smith', 'alice.smith@example.com'),
--- ('Bob Johnson', 'bob.johnson@example.com'),
--- ('Carol Williams', 'carol.williams@example.com'),
--- ('David Brown', 'david.brown@example.com'),
--- ('Eva Davis', 'eva.davis@example.com'),
--- ('Frank Miller', 'frank.miller@example.com'),
--- ('Grace Wilson', 'grace.wilson@example.com'),
--- ('Henry Moore', 'henry.moore@example.com'),
--- ('Ivy Taylor', 'ivy.taylor@example.com'),
--- ('Jack Anderson', 'jack.anderson@example.com'),
--- ('Kathy Thomas', 'kathy.thomas@example.com'),
--- ('Leo Jackson', 'leo.jackson@example.com'),
--- ('Mona White', 'mona.white@example.com'),
--- ('Nate Harris', 'nate.harris@example.com'),
--- ('Olivia Martin', 'olivia.martin@example.com'),
--- ('Paul Thompson', 'paul.thompson@example.com'),
--- ('Quincy Garcia', 'quincy.garcia@example.com'),
--- ('Rachel Martinez', 'rachel.martinez@example.com'),
--- ('Steve Robinson', 'steve.robinson@example.com'),
--- ('Tina Clark', 'tina.clark@example.com'),
--- ('Uma Rodriguez', 'uma.rodriguez@example.com'),
--- ('Victor Lewis', 'victor.lewis@example.com'),
--- ('Wendy Lee', 'wendy.lee@example.com'),
--- ('Xander Walker', 'xander.walker@example.com'),
--- ('Yara Hall', 'yara.hall@example.com'),
--- ('Zack Allen', 'zack.allen@example.com'),
--- ('Amy Young', 'amy.young@example.com'),
--- ('Brian King', 'brian.king@example.com'),
--- ('Cindy Wright', 'cindy.wright@example.com'),
--- ('Derek Scott', 'derek.scott@example.com'),
--- ('Ella Green', 'ella.green@example.com'),
--- ('Fred Adams', 'fred.adams@example.com'),
--- ('Gina Baker', 'gina.baker@example.com'),
--- ('Hank Nelson', 'hank.nelson@example.com'),
--- ('Isla Carter', 'isla.carter@example.com'),
--- ('Jake Mitchell', 'jake.mitchell@example.com'),
--- ('Kara Perez', 'kara.perez@example.com'),
--- ('Liam Roberts', 'liam.roberts@example.com'),
--- ('Mia Turner', 'mia.turner@example.com'),
--- ('Noah Phillips', 'noah.phillips@example.com'),
--- ('Owen Campbell', 'owen.campbell@example.com'),
--- ('Penny Parker', 'penny.parker@example.com'),
--- ('Quinn Evans', 'quinn.evans@example.com'),
--- ('Riley Edwards', 'riley.edwards@example.com'),
--- ('Sophie Collins', 'sophie.collins@example.com'),
--- ('Tommy Stewart', 'tommy.stewart@example.com'),
--- ('Ursula Sanchez', 'ursula.sanchez@example.com'),
--- ('Violet Morris', 'violet.morris@example.com'),
--- ('Willie Rogers', 'willie.rogers@example.com'),
--- ('Xenia Reed', 'xenia.reed@example.com');
+
+-- INSERT INTO users (username, password, first_name, last_name, middle_name, phone, email, base_location_state, base_location_area)
+-- VALUES
+-- ('xreed', 'hashed_password1', 'Xenia', 'Reed', 'Marie', '555-123-4567', 'xenia.reed@example.com', 'California', 'Los Angeles'),
+-- ('jdoe91', 'hashed_password2', 'John', 'Doe', NULL, '555-987-6543', 'john.doe91@example.com', 'Texas', 'Houston'),
+-- ('sblack23', 'hashed_password3', 'Sarah', 'Black', 'Anne', '555-234-1122', 'sblack23@example.com', 'New York', 'Brooklyn'),
+-- ('mkhan88', 'hashed_password4', 'Mohammed', 'Khan', 'Rafiq', '555-345-9988', 'mkhan88@example.com', 'Illinois', 'Chicago'),
+-- ('laustin77', 'hashed_password5', 'Laura', 'Austin', NULL, '555-776-2233', 'laustin77@example.com', 'Florida', 'Miami');
+
+
+
+
+desc users
+
+
+
+drop table users;
+
+SELECT * FROM users;
+
+
+

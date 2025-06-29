@@ -16,14 +16,22 @@ const db = mysql.createConnection({
 
 db.connect(err => {
   if (err) throw err;
-  console.log('Connected to MySQL');
+  console.log('✅ Connected to MySQL');
 });
 
 
 // Get all users
 app.get('/api/users', (req, res) => {
-  db.query('SELECT * FROM users', (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
+  const sql = `
+    SELECT username, first_name, middle_name, last_name,
+           phone, email, base_location_state, base_location_area
+    FROM users
+  `;
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error fetching users:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
     res.json(results);
   });
 });
@@ -31,70 +39,106 @@ app.get('/api/users', (req, res) => {
 
 // Add a new user
 app.post('/api/users', (req, res) => {
-  const { name, email } = req.body;
+  const {
+    username, password,
+    first_name, middle_name, last_name,
+    phone, email, base_location_state, base_location_area
+  } = req.body;
+
+  const sql = `
+    INSERT INTO users (
+      username, password,
+      first_name, middle_name, last_name,
+      phone, email, base_location_state, base_location_area
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
   db.query(
-    'INSERT INTO users (name, email) VALUES (?, ?)',
-    [name, email],
+    sql,
+    [username, password, first_name, middle_name, last_name, phone, email, base_location_state, base_location_area],
     (err, result) => {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ id: result.insertId, name, email });
-    }
-  );
-});
-
-
-
-
-
-// Login route - lookup by email
-app.post('/api/login', (req, res) => {
-  const { email } = req.body;
-
-  if (!email) return res.status(400).json({ message: 'Email is required' });
-
-  db.query(
-    'SELECT name, email FROM users WHERE email = ?',
-    [email],
-    (err, results) => {
       if (err) {
-        console.error(err);
-        return res.status(500).json({ message: 'Database error' });
+        console.error('Insert error:', err);
+        return res.status(500).json({ error: 'Insert failed' });
       }
 
-      if (results.length > 0) {
-        res.json(results[0]); // send back user info
-      } else {
-        res.status(404).json({ message: 'User not found' });
-      }
+      res.json({
+        id: result.insertId,
+        username, first_name, middle_name, last_name,
+        phone, email, base_location_state, base_location_area
+      });
     }
   );
 });
 
 
-// Get user by email (called from settings page using sessionStorage email)
+
+app.post('/api/login', (req, res) => {
+  const { identifier, password } = req.body;
+
+  if (!identifier || !password) {
+    return res.status(400).json({ message: 'Username/email and password are required' });
+  }
+
+  const sql = `
+    SELECT username, password, email, first_name, middle_name, last_name,
+           phone, base_location_state, base_location_area
+    FROM users
+    WHERE username = ? OR email = ?
+  `;
+
+  db.query(sql, [identifier, identifier], (err, results) => {
+    if (err) {
+      console.error('Login error:', err);
+      return res.status(500).json({ message: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const user = results[0];
+
+    if (user.password !== password) {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    // Remove password before sending back user info
+    const { password: _, ...safeUser } = user;
+    res.json(safeUser);
+  });
+});
+
+
+
+
+// Get user by email (for Settings page)
 app.post('/api/user', (req, res) => {
   const { email } = req.body;
 
   if (!email) return res.status(400).json({ message: 'Email is required' });
 
-  db.query(
-    'SELECT name, email FROM users WHERE email = ?',
-    [email],
-    (err, results) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ message: 'Database error' });
-      }
+  const sql = `
+    SELECT username, email, first_name, middle_name, last_name,
+           phone, base_location_state, base_location_area
+    FROM users
+    WHERE email = ?
+  `;
 
-      if (results.length > 0) {
-        res.json(results[0]); // send back user info
-      } else {
-        res.status(404).json({ message: 'User not found' });
-      }
+  db.query(sql, [email], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Database error' });
     }
-  );
+
+    if (results.length > 0) {
+      res.json(results[0]);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  });
 });
 
 
 // Start server
-app.listen(3001, () => console.log('Server running on port 3001'));
+app.listen(3001, () => console.log('🚀 Server running on http://localhost:3001'));
