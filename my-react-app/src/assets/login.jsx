@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './login.css';
 
 export default function LoginModal({ show, onLoginSuccess }) {
   const [form, setForm] = useState({ identifier: '', password: '' });
@@ -44,24 +45,35 @@ export default function LoginModal({ show, onLoginSuccess }) {
   if (!show) return null;
 
   return (
-    <div className="modal">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={form.identifier}
-          onChange={(e) => setForm({ ...form, identifier: e.target.value })}
-          placeholder="Username or Email"
-        />
-        <input
-          type="password"
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-          placeholder="Password"
-        />
-        <button type="submit">Login</button>
-        {errors.identifier && <div>{errors.identifier}</div>}
-        {errors.password && <div>{errors.password}</div>}
-      </form>
+    <div className="modal-backdrop">
+      <div className="modal-container">
+        <h2 className="modal-title">Login</h2>
+        <form className="modal-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              className={`modal-input ${errors.identifier ? 'input-error' : ''}`}
+              value={form.identifier}
+              onChange={(e) => setForm({ ...form, identifier: e.target.value })}
+              placeholder="Username or Email"
+            />
+            {errors.identifier && <span className="error-text">{errors.identifier}</span>}
+          </div>
+
+          <div className="form-group">
+            <input
+              type="password"
+              className={`modal-input ${errors.password ? 'input-error' : ''}`}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              placeholder="Password"
+            />
+            {errors.password && <span className="error-text">{errors.password}</span>}
+          </div>
+
+          <button type="submit" className="modal-button">Login</button>
+        </form>
+      </div>
     </div>
   );
 }

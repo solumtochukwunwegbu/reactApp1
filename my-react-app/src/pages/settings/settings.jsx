@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default function Settings() {
   const [formData, setFormData] = useState({
+    id: '', // ✅ Added to include ID
     username: '',
     first_name: '',
     last_name: '',
@@ -21,13 +22,30 @@ export default function Settings() {
   useEffect(() => {
     if (!user || !user.email) return;
 
+    let isMounted = true;
+
     axios
       .post('http://localhost:3001/api/user', { email: user.email })
       .then(res => {
-        if (res.data) setFormData({ ...res.data, password: '' }); // don’t prefill password
-      })
-      .catch(err => console.error('Error loading user data:', err));
-  }, [user]);
+        if (isMounted && res.data) {
+          const data = res.data || {};
+          setFormData({
+            id: data.id || '', // ✅ Capture user ID
+            username: data.username || '',
+            first_name: data.first_name || '',
+            middle_name: data.middle_name || '',
+            last_name: data.last_name || '',
+            phone: data.phone || '',
+            email: data.email || '',
+            base_location_state: data.base_location_state || '',
+            base_location_area: data.base_location_area || '',
+            password: ''
+          });
+        }
+      });
+
+    return () => { isMounted = false };
+  }, []);
 
   const handleChange = e => {
     setFormData(prev => ({
@@ -40,7 +58,7 @@ export default function Settings() {
     e.preventDefault();
 
     const payload = { ...formData };
-    if (!payload.password) delete payload.password; // don't send empty password
+    if (!payload.password) delete payload.password;
 
     axios
       .post('http://localhost:3001/api/user/update', payload)

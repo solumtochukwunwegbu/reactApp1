@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from "../../assets/globalUser";
 import './index.css';
 
 export default function IndexPage() {

@@ -23,7 +23,7 @@
 
 
 
-desc users
+desc users;
 
 
 
@@ -33,3 +33,4 @@ SELECT * FROM users;
 
 
 
+SELECT * FROM users WHERE email = 'xenia.reed@example.com';
