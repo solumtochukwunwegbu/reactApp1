@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Settings() {
   const [formData, setFormData] = useState({
-    id: '', // ✅ Added to include ID
+    id: '',
     username: '',
     first_name: '',
     last_name: '',
@@ -17,6 +17,7 @@ export default function Settings() {
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const user = JSON.parse(sessionStorage.getItem('user'));
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function Settings() {
         if (isMounted && res.data) {
           const data = res.data || {};
           setFormData({
-            id: data.id || '', // ✅ Capture user ID
+            id: data.id || '',
             username: data.username || '',
             first_name: data.first_name || '',
             middle_name: data.middle_name || '',
@@ -69,17 +70,24 @@ export default function Settings() {
       .catch(() => alert('Failed to update profile.'));
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('user');
+    window.location.reload();
+  };
+
   if (!user) return <p>Not authorized. Please log in.</p>;
 
   return (
     <div className="settings-container">
-      <h2>Your Profile</h2>
-      <div><strong>Username:</strong> {formData.username}</div>
-      <div><strong>Name:</strong> {formData.first_name} {formData.middle_name} {formData.last_name}</div>
-      <div><strong>Phone:</strong> {formData.phone}</div>
-      <div><strong>Email:</strong> {formData.email}</div>
-      <div><strong>State:</strong> {formData.base_location_state}</div>
-      <div><strong>Area:</strong> {formData.base_location_area}</div>
+      <div className="profile">
+        <h2>Your Profile</h2>
+        <div><strong>Username:</strong> {formData.username}</div>
+        <div><strong>Name:</strong> {formData.first_name} {formData.middle_name} {formData.last_name}</div>
+        <div><strong>Phone:</strong> {formData.phone}</div>
+        <div><strong>Email:</strong> {formData.email}</div>
+        <div><strong>State:</strong> {formData.base_location_state}</div>
+        <div><strong>Area:</strong> {formData.base_location_area}</div>
+      </div>
 
       <button onClick={() => setShowModal(true)}>Edit Profile</button>
 
@@ -136,6 +144,30 @@ export default function Settings() {
                 <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* 🔴 Logout Button */}
+      <div style={{ marginTop: '30px' }}>
+        <button
+          onClick={() => setShowLogoutConfirm(true)}
+          className="logout-btn"
+        >
+          Logout
+        </button>
+      </div>
+
+      {/* 🔒 Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="modal-backdrop">
+          <div className="modal-container" style={{ maxWidth: '400px', textAlign: 'center' }}>
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to log out?</p>
+            <div className="modal-actions" style={{ justifyContent: 'center' }}>
+              <button onClick={handleLogout} className="confirm-logout">Yes, Logout</button>
+              <button onClick={() => setShowLogoutConfirm(false)} className="cancel-logout">Cancel</button>
+            </div>
           </div>
         </div>
       )}

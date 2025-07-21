@@ -47,7 +47,7 @@ export default function LoginModal({ show, onLoginSuccess }) {
   return (
     <div className="modal-backdrop">
       <div className="modal-container">
-        <h2 className="modal-title">Login</h2>
+        <h2 className="modal-title">Login in to continue</h2>
         <form className="modal-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <input

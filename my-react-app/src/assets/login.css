@@ -1,3 +1,8 @@
+Apply box-sizing globally
+* {
+  box-sizing: border-box;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -10,6 +15,7 @@
   align-items: center;
   z-index: 999;
   animation: fadeIn 0.3s ease-in-out;
+  
 }
 
 .modal-container {
@@ -27,13 +33,18 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #333;
+  /* color: #333; */
+  color: #ED6C21;
+ 
 }
 
 .modal-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-block: 30px;
 }
 
 .form-group {
@@ -76,6 +87,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .modal-button:hover {
