@@ -23,6 +23,7 @@ export default function App() {
       setLoginShown(true);
     }
   }, []);
+  console.log('User loaded from sessionStorage:', user);
 
   // Callback from LoginModal after successful login
   const handleLoginSuccess = (userData) => {

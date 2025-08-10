@@ -12,18 +12,12 @@
 -- );
 
 
--- INSERT INTO users (username, password, first_name, last_name, middle_name, phone, email, base_location_state, base_location_area)
--- VALUES
--- ('xreed', 'hashed_password1', 'Xenia', 'Reed', 'Marie', '555-123-4567', 'xenia.reed@example.com', 'California', 'Los Angeles'),
--- ('jdoe91', 'hashed_password2', 'John', 'Doe', NULL, '555-987-6543', 'john.doe91@example.com', 'Texas', 'Houston'),
--- ('sblack23', 'hashed_password3', 'Sarah', 'Black', 'Anne', '555-234-1122', 'sblack23@example.com', 'New York', 'Brooklyn'),
--- ('mkhan88', 'hashed_password4', 'Mohammed', 'Khan', 'Rafiq', '555-345-9988', 'mkhan88@example.com', 'Illinois', 'Chicago'),
--- ('laustin77', 'hashed_password5', 'Laura', 'Austin', NULL, '555-776-2233', 'laustin77@example.com', 'Florida', 'Miami');
 
 
+desc merchants;
 
 
-desc users;
+ALTER TABLE merchants DROP INDEX fk_user;
 
 
 
@@ -32,5 +26,58 @@ drop table users;
 SELECT * FROM users;
 
 
+ALTER TABLE users 
+CHANGE activeStatus status ENUM('active', 'suspended') DEFAULT 'active';
 
 SELECT * FROM users WHERE email = 'xenia.reed@example.com';
+
+
+show databases;
+
+
+
+
+delete from merchants;
+
+SELECT * FROM merchants;
+
+
+CREATE TABLE `merchants` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `TerminalID` varchar(255) DEFAULT NULL,
+  `MerchantName` varchar(255) DEFAULT NULL,
+  `Address` text,
+  `TerminalKey` varchar(255) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `appName` varchar(100) DEFAULT NULL,
+  `appVersion` varchar(100) DEFAULT NULL,
+  `ptsp` varchar(100) DEFAULT NULL,
+  `serial` varchar(255) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
+  `model` varchar(100) DEFAULT NULL,
+  `connectivity` varchar(50) DEFAULT NULL,
+  `network` varchar(50) DEFAULT NULL,
+  `latitude` varchar(50) DEFAULT NULL,
+  `longitude` varchar(50) DEFAULT NULL,
+  `comment` text,
+  `commentOther` text,
+  `receipt` longblob,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+
+
+show CREATE table merchants;
+
+DROP TABLE merchants;
+
+
+ALTER TABLE merchants ADD COLUMN user_id INT;
+
+
+
+
+
+desc merchants

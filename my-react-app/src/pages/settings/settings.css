@@ -15,6 +15,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Optional: soft shadow */
   max-width: 600px;
   margin: 40px auto;
+  margin-top: -50px;
 }
 
 .profile {

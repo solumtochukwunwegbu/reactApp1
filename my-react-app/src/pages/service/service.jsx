@@ -52,29 +52,35 @@ export default function Service() {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const form = new FormData();
-    for (const key in formData) {
-      form.append(key, formData[key]);
+  const form = new FormData();
+  for (const key in formData) {
+  form.append(key, formData[key]);
+}
+
+// ✅ Append the user ID from sessionStorage
+const user = JSON.parse(sessionStorage.getItem("user"));
+if (user && user.id) {
+  form.append("user_id", user.id);
+}
+
+  try {
+    const res = await fetch("http://localhost:3001/api/submit-service", {
+      method: "POST",
+      body: form,
+    });
+
+    if (res.ok) {
+      alert("Form submitted successfully!");
+    } else {
+      alert("Submission failed.");
     }
-
-    try {
-      const res = await fetch("http://localhost:5000/api/submit-service", {
-        method: "POST",
-        body: form,
-      });
-
-      if (res.ok) {
-        alert("Form submitted successfully!");
-      } else {
-        alert("Submission failed.");
-      }
-    } catch (err) {
-      console.error("Submission error:", err);
-      alert("An error occurred while submitting.");
-    }
+  } catch (err) {
+    console.error("Submission error:", err);
+    alert("An error occurred while submitting.");
   }
+}
 
   return (
     <form onSubmit={handleSubmit}>
@@ -125,6 +131,10 @@ export default function Service() {
       <label>Comment (Other):
         <textarea name="commentOther" onChange={handleChange} />
       </label>
+
+      {/* ✅ Append the user ID from sessionStorage */}
+      <input type="hidden" name="user_id" value={JSON.parse(sessionStorage.getItem("user"))?.id || ""} />
+
 
       <div className="form-buttons">
         <button type="button" onClick={getLocation}>Capture Location</button>
