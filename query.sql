@@ -42,6 +42,8 @@ delete from merchants;
 SELECT * FROM merchants;
 
 
+
+
 CREATE TABLE `merchants` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `TerminalID` varchar(255) DEFAULT NULL,

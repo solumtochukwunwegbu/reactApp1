@@ -7,6 +7,7 @@ import Service from './pages/service/service';
 import Users from './pages/users/users';
 import Settings from './pages/settings/settings';
 import { Dashboard, Logo } from './layout';
+import Merchants from './pages/merchants/merchants';
 
 import LoginModal from './assets/login';
 
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/reports" element={<Reports />} />
           <Route path="/users" element={<Users />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/merchants" element={<Merchants />} />
         </Routes>
       </main>
       <Dashboard />

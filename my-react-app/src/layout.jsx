@@ -5,7 +5,7 @@ import "./assets/layout.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Icons — import from proper icon packs
-import { faHouse, faWrench, faGear, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faWrench, faGear, faUser, faStore} from '@fortawesome/free-solid-svg-icons';
 import { faChartBar } from '@fortawesome/free-regular-svg-icons'; // chartBar is regular
 
 import logo from './assets/full_logo.256047a7.png';
@@ -39,6 +39,15 @@ export function Dashboard() {
             <FontAwesomeIcon icon={faWrench} />
           </span>
           <span className="label">Service</span>
+        </Link>
+      </div>
+
+      <div className="dash-item">
+        <Link to="/merchants">
+          <span className="icon text-black">
+            <FontAwesomeIcon icon={faStore} />
+          </span>
+          <span className="label">Merchants</span>
         </Link>
       </div>
 
